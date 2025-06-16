@@ -1,0 +1,11 @@
+{% extends "base.html" %} {% block "content" %}
+<div>
+    <h1>Delete Expense</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <p>Are you sure you want to delete "{{ expense.name }}"?</p>
+        <input type="submit" value="Confirm" class="btn btn-outline-danger" />
+        <a href="{% url 'home' %}" class="btn btn-info">Go Back</a>
+    </form>
+</div>
+{% endblock %}

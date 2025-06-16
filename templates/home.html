@@ -1,0 +1,57 @@
+{% extends "base.html" %} {% block "content" %}
+<div>
+    <table
+        class="table table-responsive table-striped table-hover table-bordered"
+    >
+        <thead>
+            <tr class="table-info">
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Currency</th>
+                <th scope="col">Price</th>
+                <th scope="col">Date</th>
+                <th scope="col">Status</th>
+                <th scope="col">Options:</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            {% for expense in expense_list %}
+            <tr class="table-light">
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{expense.name}}</td>
+                <td>{{expense.currency}}</td>
+                <td>{{expense.price}}</td>
+                <td>{{expense.date}}</td>
+                <td>{{expense.type}}</td>
+                <td>
+                    <div
+                        class="btn-group"
+                        role="group"
+                        aria-label="Expense Actions"
+                    >
+                        <a
+                            href="{% url 'update_entry' expense.pk %}"
+                            class="btn btn-outline-success"
+                        >
+                            Edit
+                        </a>
+                        &nbsp;
+                        <a
+                            href="{% url 'delete_entry' expense.pk %}"
+                            class="btn btn-outline-danger"
+                        >
+                            Delete
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{% url 'add_entry' %}" class="btn btn-primary">
+        Add New Expense
+    </a>
+</div>
+
+{% endblock %}
